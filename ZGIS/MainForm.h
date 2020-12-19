@@ -1,8 +1,7 @@
 #pragma once
-
+#include "Render.h"
 #include <QtWidgets/QMainWindow>
 #include "ui_MainForm.h"
-#include "OpenGLWidget.h"
 
 class ZGIS : public QMainWindow
 {
