@@ -10,6 +10,6 @@
 #include "shapefil.h"
 #include "LineClipping.h"
 
-int mainLoop();
+int mainLoop(int width, int height, std::string windowName);
 
 #endif // !RENDER_H

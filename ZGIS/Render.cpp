@@ -308,7 +308,7 @@ void render()
 	glDrawArrays(GL_LINES, 0, nClippedLineVertices);
 }
 
-int mainLoop()
+int mainLoop(int width,int height,string windowName)
 {
 	// initialization
 	glfwInit();
@@ -317,7 +317,9 @@ int mainLoop()
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// window creation
-	GLFWwindow* window = glfwCreateWindow(winWidth, winHeight, "EX004", NULL, NULL);
+	shpPath = windowName.c_str();
+	GLFWwindow* window = glfwCreateWindow(winWidth, winHeight, windowName.c_str(), NULL, NULL);
+	glfwSetWindowPos(window, width, height);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -328,8 +330,9 @@ int mainLoop()
 
 	// setup the callback functions
 	glfwSetFramebufferSizeCallback(window, frame_buffer_size_callback);
-	glfwSetMouseButtonCallback(window, mouse_button_callback);
-	glfwSetCursorPosCallback(window, cursor_pos_callback);
+	//ÔÝ²»¼¤»î¿òÑ¡¼ô²Ã£¨2020.12.21£©
+	//glfwSetMouseButtonCallback(window, mouse_button_callback);
+	//glfwSetCursorPosCallback(window, cursor_pos_callback);
 
 	// load all OpenGL function pointers
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
