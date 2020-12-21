@@ -25,6 +25,22 @@ double xmin, xmax, ymin, ymax;
 double clipBoundary[10];
 int nClippedLineVertices = 0;
 
+string command = "";
+
+// camera
+glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 0.0f);
+glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+
+// timing
+float deltaTime = 0.0f;	// time between current frame and last frame
+float lastFrame = 0.0f;
+
+void setCommand(string cmd)
+{
+	command = cmd;
+}
+
 void clipping()
 {
 	// clear old clipped lines
@@ -95,6 +111,24 @@ void update_clipping_region()
 	clipBoundary[7] = ymax;
 	clipBoundary[8] = xmin;
 	clipBoundary[9] = ymin;
+}
+
+// process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
+// ---------------------------------------------------------------------------------------------------------
+void processInput(GLFWwindow* window)
+{
+	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+		glfwSetWindowShouldClose(window, true);
+
+	float cameraSpeed = 2.5 * deltaTime;
+	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+		cameraPos += cameraSpeed * cameraUp;
+	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+		cameraPos -= cameraSpeed * cameraUp;
+	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+		cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+		cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
 }
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
@@ -275,6 +309,14 @@ void setup_projection()
 
 void render()
 {
+
+	// activate shader
+	pShader->use();
+
+	// camera/view transformation
+	glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+	pShader->setMat4("view", view);
+
 	// clear the frame buffer
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -308,7 +350,7 @@ void render()
 	glDrawArrays(GL_LINES, 0, nClippedLineVertices);
 }
 
-int mainLoop(int width,int height,string windowName)
+int mainLoop(int width, int height, string windowName)
 {
 	// initialization
 	glfwInit();
@@ -330,9 +372,6 @@ int mainLoop(int width,int height,string windowName)
 
 	// setup the callback functions
 	glfwSetFramebufferSizeCallback(window, frame_buffer_size_callback);
-	//ÔÝ²»¼¤»î¿òÑ¡¼ô²Ã£¨2020.12.21£©
-	//glfwSetMouseButtonCallback(window, mouse_button_callback);
-	//glfwSetCursorPosCallback(window, cursor_pos_callback);
 
 	// load all OpenGL function pointers
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -348,6 +387,26 @@ int mainLoop(int width,int height,string windowName)
 	// render loop
 	while (!glfwWindowShouldClose(window))
 	{
+		if (command != "")
+		{
+			if (command == "ClipLine")
+			{
+				glfwSetMouseButtonCallback(window, mouse_button_callback);
+				glfwSetCursorPosCallback(window, cursor_pos_callback);
+			}
+			else if(command=="Pan")
+			{
+				float currentFrame = glfwGetTime();
+				deltaTime = currentFrame - lastFrame;
+				lastFrame = currentFrame;
+				processInput(window);
+			}
+			else
+			{
+
+			}
+		}
+
 		// render
 		render();
 

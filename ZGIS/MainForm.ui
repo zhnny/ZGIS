@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>610</width>
-    <height>73</height>
+    <height>83</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,7 +38,14 @@
     </widget>
     <addaction name="menu_open"/>
    </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>工具</string>
+    </property>
+    <addaction name="action"/>
+   </widget>
    <addaction name="menu_file"/>
+   <addaction name="menu"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="enabled">
@@ -50,11 +57,34 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="action_zoomOut"/>
+   <addaction name="action_zoomIn"/>
+   <addaction name="action_pan"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action_shpOpen">
    <property name="text">
     <string>shp文件</string>
+   </property>
+  </action>
+  <action name="action_zoomOut">
+   <property name="text">
+    <string>放大</string>
+   </property>
+  </action>
+  <action name="action_zoomIn">
+   <property name="text">
+    <string>缩小</string>
+   </property>
+  </action>
+  <action name="action_pan">
+   <property name="text">
+    <string>平移</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>剪裁</string>
    </property>
   </action>
  </widget>

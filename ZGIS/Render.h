@@ -11,5 +11,6 @@
 #include "LineClipping.h"
 
 int mainLoop(int width, int height, std::string windowName);
+void setCommand(std::string cmd);
 
 #endif // !RENDER_H

@@ -14,4 +14,8 @@ public:
 private:
     Ui::ZGISClass ui;
     void GetFile();
+    void ClipLine();
+    void Pan();
+    void ZoomOut();
+    void ZoomIn();
 };

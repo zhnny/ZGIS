@@ -6,6 +6,10 @@ ZGIS::ZGIS(QWidget* parent)
 	ui.setupUi(this);
 	move(100, 20);
 	connect(ui.action_shpOpen, &QAction::triggered, this, &ZGIS::GetFile);
+	connect(ui.action, &QAction::triggered, this, &ZGIS::ClipLine);
+	connect(ui.action_pan, &QAction::triggered, this, &ZGIS::Pan);
+	connect(ui.action_zoomOut, &QAction::triggered, this, &ZGIS::ZoomOut);
+	connect(ui.action_zoomIn, &QAction::triggered, this, &ZGIS::ZoomIn);
 }
 
 void ZGIS::GetFile()
@@ -23,4 +27,22 @@ void ZGIS::GetFile()
 	}
 	else // 用户取消选择
 		return;
+}
+
+void ZGIS::Pan()
+{
+	setCommand("Pan");
+}
+
+void ZGIS::ZoomOut()
+{
+}
+
+void ZGIS::ZoomIn()
+{
+}
+
+void ZGIS::ClipLine()
+{
+	setCommand("ClipLine");
 }
