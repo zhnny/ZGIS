@@ -12,5 +12,6 @@
 
 int mainLoop(int width, int height, std::string windowName);
 void setCommand(std::string cmd);
+void setModel(float scale = 1.0);
 
 #endif // !RENDER_H

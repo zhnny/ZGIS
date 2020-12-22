@@ -36,9 +36,20 @@ glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
 
+//sacle
+float oriScale = 1.0;
+
 void setCommand(string cmd)
 {
 	command = cmd;
+}
+
+void setModel(float scale)
+{
+	oriScale = scale * oriScale;
+	glm::mat4 model;
+	model = glm::scale(model, glm::vec3(oriScale, oriScale, 1.0));
+	pShader->setMat4("model", model);
 }
 
 void clipping()

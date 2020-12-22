@@ -36,10 +36,12 @@ void ZGIS::Pan()
 
 void ZGIS::ZoomOut()
 {
+	setModel(1.25);
 }
 
 void ZGIS::ZoomIn()
 {
+	setModel(0.75);
 }
 
 void ZGIS::ClipLine()
