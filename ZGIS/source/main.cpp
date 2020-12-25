@@ -1,5 +1,5 @@
-#include "MainForm.h"
 #include <QtWidgets/QApplication>
+#include "widget/MainForm.h"
 
 int main(int argc, char *argv[])
 {

@@ -47,7 +47,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>./ZGIS\x64\Debug\uic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <UseFullPaths>false</UseFullPaths>
     </ClCompile>
@@ -96,18 +96,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="OpenGLWidget.cpp" />
-    <QtRcc Include="ZGIS.qrc" />
-    <QtUic Include="MainForm.ui" />
-    <QtMoc Include="MainForm.h" />
-    <ClCompile Include="MainForm.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\widget\OpenGLWidget.cpp" />
+    <ClCompile Include="source\widget\StatusBar.cpp" />
+    <ClCompile Include="source\widget\ToolBoxTreeWidget.cpp" />
+    <QtMoc Include="source\widget\MainForm.h" />
+    <ClCompile Include="source\widget\LayerTreeWidget.cpp" />
+    <ClCompile Include="source\widget\MainForm.cpp" />
+    <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="OpenGLWidget.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="source\geography\map\GeoFeature.h" />
+    <ClInclude Include="source\geography\map\GeoFeatureLayerProperty.h" />
+    <ClInclude Include="source\geography\map\GeoFieldDefine.h" />
+    <ClInclude Include="source\geography\map\GeoLayer.h" />
+    <ClInclude Include="source\geography\map\GeoMapProperty.h" />
+    <ClInclude Include="source\geography\utility\GeoFileRead.h" />
+    <ClInclude Include="source\widget\LayerTreeWidget.h" />
+    <ClInclude Include="source\widget\OpenGLWidget.h" />
+    <ClInclude Include="source\widget\StatusBar.h" />
+    <ClInclude Include="source\widget\ToolBoxTreeWidget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
