@@ -9,6 +9,7 @@
 #include "ToolBoxTreeWidget.h"
 #include "OpenGLWidget.h"
 #include "LayerTreeWidget.h"
+#include "control/FileReader.h"
 
 class ZGIS : public QMainWindow
 {

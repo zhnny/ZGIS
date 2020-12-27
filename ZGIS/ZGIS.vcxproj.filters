@@ -42,6 +42,9 @@
     <ClCompile Include="source\widget\ToolBoxTreeWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\control\FileReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="source\widget\MainForm.h">
@@ -77,6 +80,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\geography\map\GeoFeature.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\control\FileReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

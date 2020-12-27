@@ -48,7 +48,7 @@ void ZGIS::CreateActions()
     drawLine = new QAction(tr("Draw Line"));
     drawLine->setIcon(QIcon("resource/line.png"));
     drawMenu->addAction(drawLine);
-
+    
     clipLine = new QAction(tr("Clip Line"));
     clipLine->setIcon(QIcon("resource/line.png"));
     clipMenu->addAction(clipLine);
@@ -110,7 +110,11 @@ void ZGIS::OnOpenShapeFile()
         return;
     for (auto iter = files.begin(); iter != files.end(); ++iter)
     {
-
+        FileReader* fileReader = new FileReader();
+        fileReader->init(false);
+        OGRDataSource* dataSource = fileReader->OpenshapeFile(iter.operator*().toStdString());
+        openGLWidget->onSendDataSourceToGPU(dataSource);
     }
+    openGLWidget->update();
 }
  

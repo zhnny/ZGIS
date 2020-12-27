@@ -47,12 +47,12 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>./includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./source;./includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <UseFullPaths>false</UseFullPaths>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>glut32.lib;OpenGL32.lib;$(Qt_LIBS_);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>gdal_i.lib;glut32.lib;OpenGL32.lib;$(Qt_LIBS_);%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -96,6 +96,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\control\FileReader.cpp" />
     <ClCompile Include="source\widget\OpenGLWidget.cpp" />
     <ClCompile Include="source\widget\StatusBar.cpp" />
     <ClCompile Include="source\widget\ToolBoxTreeWidget.cpp" />
@@ -105,6 +106,7 @@
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\control\FileReader.h" />
     <ClInclude Include="source\geography\map\GeoFeature.h" />
     <ClInclude Include="source\geography\map\GeoFeatureLayerProperty.h" />
     <ClInclude Include="source\geography\map\GeoFieldDefine.h" />
