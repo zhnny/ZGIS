@@ -8,7 +8,7 @@
 
 Shader::~Shader()
 {
-    GLCall(glDeleteProgram(rendererID));
+    //GLCall(glDeleteProgram(rendererID));
 }
 
 void Shader::create(const std::string vsPath, const std::string fsPath)

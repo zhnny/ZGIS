@@ -16,6 +16,9 @@ ZGIS::ZGIS(QWidget *parent)
 
 ZGIS::~ZGIS()
 {
+    delete this->openGLWidget;
+    delete this->toolboxTreeWidget;
+    delete this->layersTreeWidget;
 }
 
 void ZGIS::CreateWidget()
@@ -113,7 +116,7 @@ void ZGIS::OnOpenShapeFile()
         FileReader* fileReader = new FileReader();
         fileReader->init(false);
         OGRDataSource* dataSource = fileReader->OpenshapeFile(iter.operator*().toStdString());
-        openGLWidget->onSendDataSourceToGPU(dataSource);
+        openGLWidget->onSendDataSourceToGPU(dataSource,true);
     }
     openGLWidget->update();
 }

@@ -1,12 +1,18 @@
 #pragma once
-
+#include "GL/glew.h"
 #include <QtWidgets/qopenglwidget.h>
 #include <gdal/ogrsf_frmts.h>
 #include <glm/glm.hpp>
+#include <glm/gtx/string_cast.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <vector>
 #include "model/GeoMap.h"
 #include "model/GeoBase.hpp"
 #include "whatisthisdialog.h"
+#include "opengl/openglfeaturedescriptor.h"
+#include "opengl/env.h"
+#include "opengl/appevent.h"
+
 
 class OpenGLWidget:public QOpenGLWidget
 {
@@ -22,17 +28,22 @@ signals:
 	void signalUpadteCoord(double geoX, double geoY);
 
 public slots:
-	void onSendDataSourceToGPU(OGRDataSource* dataSource);
-	void onSendLayerToGPU(OGRLayer* layer);
-	void onSendFeatureLayerToGPU(OGRLayer* layer);
+	void onSendMapToGPU(bool update = true);
+	void onSendDataSourceToGPU(OGRDataSource* dataSource,bool update=true);
+	void onSendLayerToGPU(OGRLayer* layer,bool update=true);
+	void onSendFeatureLayerToGPU(OGRLayer* layer,bool update=true);
 	void onSendFeatureToGPU(OGRFeature* feature);
 	void onZoomToLayer(OGRLayer* layer);
 	void onZoomToMap();
 
 private:
-	void sendPointToGPU(OGRPoint* point);
-	void sendLineStringToGPU(OGRLineString* lineString);
-	void sendPolygonToGPU(OGRPolygon* polygon);
+	OpenglFeatureDescriptor* sendPointToGPU(OGRPoint* point, float r, float g, float b);
+	OpenglFeatureDescriptor* sendMultiPointToGPU(OGRMultiPoint* mutliPoint, float r, float g, float b);
+	OpenglFeatureDescriptor* sendLineStringToGPU(OGRLineString* lineString, float r, float g, float b);
+	OpenglFeatureDescriptor* sendMultiLineStringToGPU(OGRMultiLineString* multiLineString, float r, float g, float b);
+	OpenglFeatureDescriptor* sendPolygonToGPU(OGRPolygon* polygon, float r, float g, float b);
+	OpenglFeatureDescriptor* sendMultiPolygonToGPU(OGRMultiPolygon* multiPolygon, float r, float g, float b);
+
 
 protected:
 	virtual void initializeGL() override;
@@ -52,7 +63,7 @@ protected:
 private:
 	std::vector<double> point;
 
-	GeoMap* map;
+	GeoMap*& map;
 
 	QPoint xy2screen(double geoX, double geoY);
 	GeoRawPoint screen2stdxy(int screenX, int screenY);
@@ -90,4 +101,8 @@ private:
 
 	// What is this
 	WhatIsThisDialog* whatIsThisDialog = nullptr;
+
+	QPoint mouseLastPos;
+	QPoint mouseBeginPos;   // when press left button
+	QPoint mouseCurrPos;    // when move mouse
 };

@@ -99,6 +99,8 @@
     <ClCompile Include="source\control\FileReader.cpp" />
     <ClCompile Include="source\model\GeoMap.cpp" />
     <ClCompile Include="source\model\utility.cpp" />
+    <ClCompile Include="source\opengl\appevent.cpp" />
+    <ClCompile Include="source\opengl\env.cpp" />
     <ClCompile Include="source\opengl\glcall.cpp" />
     <ClCompile Include="source\opengl\indexbuffer.cpp" />
     <ClCompile Include="source\opengl\openglfeaturedescriptor.cpp" />
@@ -112,6 +114,7 @@
     <ClCompile Include="source\widget\OpenGLWidget.cpp" />
     <ClCompile Include="source\widget\StatusBar.cpp" />
     <ClCompile Include="source\widget\ToolBoxTreeWidget.cpp" />
+    <ClCompile Include="source\widget\whatisthisdialog.cpp" />
     <QtMoc Include="source\widget\MainForm.h" />
     <ClCompile Include="source\widget\LayerTreeWidget.cpp" />
     <ClCompile Include="source\widget\MainForm.cpp" />
@@ -119,16 +122,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\control\FileReader.h" />
-    <ClInclude Include="source\geography\map\GeoFeature.h" />
-    <ClInclude Include="source\geography\map\GeoFeatureLayerProperty.h" />
-    <ClInclude Include="source\geography\map\GeoFieldDefine.h" />
-    <ClInclude Include="source\geography\map\GeoLayer.h" />
-    <ClInclude Include="source\geography\map\GeoMapProperty.h" />
-    <ClInclude Include="source\geography\utility\GeoFileRead.h" />
     <ClInclude Include="source\model\GeoBase.hpp" />
     <ClInclude Include="source\model\GeoMap.h" />
     <ClInclude Include="source\model\GeoMapProperty.h" />
     <ClInclude Include="source\model\utility.h" />
+    <QtMoc Include="source\widget\whatisthisdialog.h" />
+    <QtMoc Include="source\opengl\appevent.h" />
+    <ClInclude Include="source\opengl\env.h" />
     <ClInclude Include="source\opengl\glcall.h" />
     <ClInclude Include="source\opengl\indexbuffer.h" />
     <ClInclude Include="source\opengl\logger.h" />
@@ -144,6 +144,20 @@
     <QtMoc Include="source\widget\OpenGLWidget.h" />
     <ClInclude Include="source\widget\StatusBar.h" />
     <ClInclude Include="source\widget\ToolBoxTreeWidget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="source\opengl\shaders\border_frag.glsl" />
+    <None Include="source\opengl\shaders\border_vert.glsl" />
+    <None Include="source\opengl\shaders\highlight_frag.glsl" />
+    <None Include="source\opengl\shaders\highlight_vert.glsl" />
+    <None Include="source\opengl\shaders\line_frag.glsl" />
+    <None Include="source\opengl\shaders\line_vert.glsl" />
+    <None Include="source\opengl\shaders\point_frag.glsl" />
+    <None Include="source\opengl\shaders\point_vert.glsl" />
+    <None Include="source\opengl\shaders\polygon_frag.glsl" />
+    <None Include="source\opengl\shaders\polygon_vert.glsl" />
+    <None Include="source\opengl\shaders\texture_frag.glsl" />
+    <None Include="source\opengl\shaders\texture_vert.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

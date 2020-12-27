@@ -81,12 +81,27 @@
     <ClCompile Include="source\opengl\vertexbufferlayout.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\opengl\appevent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\opengl\env.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\widget\whatisthisdialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="source\widget\MainForm.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="source\widget\OpenGLWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="source\opengl\appevent.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="source\widget\whatisthisdialog.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -98,24 +113,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\widget\StatusBar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\geography\utility\GeoFileRead.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\geography\map\GeoMapProperty.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\geography\map\GeoLayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\geography\map\GeoFeatureLayerProperty.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\geography\map\GeoFieldDefine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\geography\map\GeoFeature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\control\FileReader.h">
@@ -166,5 +163,22 @@
     <ClInclude Include="source\opengl\logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\opengl\env.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="source\opengl\shaders\border_frag.glsl" />
+    <None Include="source\opengl\shaders\border_vert.glsl" />
+    <None Include="source\opengl\shaders\highlight_frag.glsl" />
+    <None Include="source\opengl\shaders\highlight_vert.glsl" />
+    <None Include="source\opengl\shaders\line_frag.glsl" />
+    <None Include="source\opengl\shaders\line_vert.glsl" />
+    <None Include="source\opengl\shaders\point_frag.glsl" />
+    <None Include="source\opengl\shaders\point_vert.glsl" />
+    <None Include="source\opengl\shaders\polygon_frag.glsl" />
+    <None Include="source\opengl\shaders\polygon_vert.glsl" />
+    <None Include="source\opengl\shaders\texture_frag.glsl" />
+    <None Include="source\opengl\shaders\texture_vert.glsl" />
   </ItemGroup>
 </Project>

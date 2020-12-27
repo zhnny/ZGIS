@@ -1,8 +1,5 @@
 #include "whatisthisdialog.h"
 
-#include "geo/map/geofeature.h"
-#include "geo/map/geolayer.h"
-
 #include <QFrame>
 #include <QHBoxLayout>
 #include <QTableWidget>
@@ -10,6 +7,7 @@
 #include <QVBoxLayout>
 #include <QStringList>
 #include <QFormLayout>
+#include <model/GeoBase.hpp>
 
 
 WhatIsThisDialog::WhatIsThisDialog(QWidget* parent)
@@ -90,60 +88,62 @@ void WhatIsThisDialog::setupLayout() {
     mainLayout->addLayout(attributeTableLayout);
 }
 
-void WhatIsThisDialog::setFeature(GeoFeatureLayer* layer, GeoFeature* feature) {
-    GeoExtent extent = feature->getExtent();
-    labelFID->setText(QString::number(feature->getFID()));
-    labelGeomType->setText(feature->getGeometry()->getGeometryName());
-    labelExtentMinX->setText(QString::number(extent.minX));
-    labelExtentMaxX->setText(QString::number(extent.maxX));
-    labelExtentMinY->setText(QString::number(extent.minY));
-    labelExtentMaxY->setText(QString::number(extent.maxY));
-    labelLayerName->setText(layer->getName());
+void WhatIsThisDialog::setFeature(OGRLayer* layer, OGRFeature* feature) {
+    OGRGeometry* geometry = feature->GetGeometryRef();
+    OGREnvelope* envelop=new OGREnvelope();
+    geometry->getEnvelope(envelop);
+    labelFID->setText(QString::number(feature->GetFID()));
+    labelGeomType->setText(feature->GetGeometryRef()->getGeometryName());
+    labelExtentMinX->setText(QString::number(envelop->MinX));
+    labelExtentMaxX->setText(QString::number(envelop->MaxX));
+    labelExtentMinY->setText(QString::number(envelop->MinY));
+    labelExtentMaxY->setText(QString::number(envelop->MaxY));
+    labelLayerName->setText(layer->GetName());
 
     /* More info */
 
     // FID
     attributeTable->clearContents();
-    int numFields = layer->getNumFields();
+    int numFields = feature->GetFieldCount();
     attributeTable->setRowCount(numFields + 1);
     QTableWidgetItem* fieldItem = new QTableWidgetItem();
     fieldItem->setText("FID");
     attributeTable->setItem(0, 0, fieldItem);
     QTableWidgetItem* valueItem = new QTableWidgetItem();
-    valueItem->setText(QString::number(feature->getFID()));
+    valueItem->setText(QString::number(feature->GetFID()));
     attributeTable->setItem(0, 1, valueItem);
 
     // traverse all fields
     for (int iField = 0; iField < numFields; ++iField) {
         //attributeTable->setItem(iField, 0, )
         QTableWidgetItem* fieldItem = new QTableWidgetItem();
-        fieldItem->setText(feature->getFieldName(iField));
+        fieldItem->setText(feature->GetFieldDefnRef(iField)->GetNameRef());
         attributeTable->setItem(iField + 1, 0, fieldItem);
 
         QTableWidgetItem* valueItem = new QTableWidgetItem();
-        GeoFieldDefn* fieldDefn = layer->getFieldDefn(iField);
+        OGRFieldDefn* fieldDefn = feature->GetFieldDefnRef(iField);
 
-        switch (fieldDefn->getType()) {
+        switch (fieldDefn->GetType()) {
         default:
             break;
-        case kFieldInt: {
+        case OGRFieldType::OFTInteger: {
             valueItem->setTextAlignment(Qt::AlignRight);
             int value;
-            feature->getField(iField, &value);
+            value=feature->GetFieldAsInteger(iField);
             valueItem->setText(QString::number(value));
             break;
         }
-        case kFieldDouble: {
+        case OGRFieldType::OFTReal: {
             valueItem->setTextAlignment(Qt::AlignRight);
             double value;
-            feature->getField(iField, &value);
+            value=feature->GetFieldAsDouble(iField);
             valueItem->setText(QString::number(value));
             break;
         }
-        case kFieldText: {
+        case OGRFieldType::OFTString: {
             valueItem->setTextAlignment(Qt::AlignLeft);
             QString value;
-            feature->getField(iField, &value);
+            value=feature->GetFieldAsString(iField);
             valueItem->setText(value);
             break;
         }

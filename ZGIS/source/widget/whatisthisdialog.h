@@ -8,14 +8,15 @@
 #ifndef WHATISTHISDIALOG_H
 #define WHATISTHISDIALOG_H
 
+#include "gdal/ogrsf_frmts.h"
 #include <QDialog>
 #include <QLabel>
 #include <QPushButton>
 #include <QTableWidget>
 #include <QHBoxLayout>
 
-class GeoFeatureLayer;
-class GeoFeature;
+class OGRLayer;
+class OGRFeature;
 
 
 class WhatIsThisDialog : public QDialog
@@ -26,7 +27,7 @@ public:
 
 public:
     void setupLayout();
-    void setFeature(GeoFeatureLayer* layer, GeoFeature* feature);
+    void setFeature(OGRLayer* layer, OGRFeature* feature);
 
 signals:
     void closed();

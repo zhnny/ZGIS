@@ -1,66 +1,54 @@
 #include "OpenGLWidget.h"
-#include "glut.h"
+#include <opengl/glcall.h>
 
 OpenGLWidget::OpenGLWidget(QWidget* parent)
+	: QOpenGLWidget(parent), map(Env::map)
 {
+	this->setMouseTracking(true);
+	this->setFocusPolicy(Qt::ClickFocus);
+
+    connect(this, &OpenGLWidget::signalUpadteCoord,
+        AppEvent::getInstance(), &AppEvent::onUpdateCoord);
+    connect(AppEvent::getInstance(), &AppEvent::sigZoomToMap,
+        this, &OpenGLWidget::onZoomToMap);
+    connect(AppEvent::getInstance(), &AppEvent::sigZoomToLayer,
+        this, &OpenGLWidget::onZoomToLayer);
+    connect(AppEvent::getInstance(), &AppEvent::sigUpdateOpengl,
+        this, [this] { update(); });
+    connect(AppEvent::getInstance(), &AppEvent::sigSendMapToGPU,
+        this, &OpenGLWidget::onSendMapToGPU);
+    connect(AppEvent::getInstance(), &AppEvent::sigSendLayerToGPU,
+        this, &OpenGLWidget::onSendLayerToGPU);
+    connect(AppEvent::getInstance(), &AppEvent::sigSendFeatureToGPU,
+        this, &OpenGLWidget::onSendFeatureToGPU);
 }
 
 OpenGLWidget::~OpenGLWidget()
 {
+    makeCurrent();
+    isRunning = false;
 }
 
-void OpenGLWidget::onSendDataSourceToGPU(OGRDataSource* dataSource)
-{
-	if (!dataSource)
-		return;
-	makeCurrent();
-
-	OGRLayer* layer = NULL;
-	for (int i = 0; i < dataSource->GetLayerCount(); i++)
-	{
-		layer = dataSource->GetLayer(i);
-		onSendFeatureLayerToGPU(layer);
-	}
-}
-
-void OpenGLWidget::onSendLayerToGPU(OGRLayer* layer)
+void OpenGLWidget::onSendMapToGPU(bool update)
 {
 
 }
 
-void OpenGLWidget::onSendFeatureLayerToGPU(OGRLayer* layer)
+void OpenGLWidget::onSendDataSourceToGPU(OGRDataSource* dataSource,bool update)
 {
-	if (!layer)
-		return;
-	makeCurrent();
 
-	for (int i = 0; i < layer->GetFeatureCount(); i++)
-	{
-		onSendFeatureToGPU(layer->GetFeature(i));
-	}
+}
+
+void OpenGLWidget::onSendLayerToGPU(OGRLayer* layer, bool update)
+{
+}
+
+void OpenGLWidget::onSendFeatureLayerToGPU(OGRLayer* layer, bool update)
+{
 }
 
 void OpenGLWidget::onSendFeatureToGPU(OGRFeature* feature)
 {
-	if (!feature)
-		return;
-	makeCurrent();
-	OGRGeometry* geometry = feature->GetGeometryRef();
-	switch (geometry->getGeometryType())
-	{
-	case wkbPoint:
-		sendPointToGPU(geometry->toPoint());
-		break;
-
-	case wkbLineString:
-		sendLineStringToGPU(geometry->toLineString());
-		break;
-
-	case wkbPolygon:
-		sendPolygonToGPU(geometry->toPolygon());
-
-		break;
-	}
 }
 
 void OpenGLWidget::onZoomToLayer(OGRLayer* layer)
@@ -71,86 +59,129 @@ void OpenGLWidget::onZoomToMap()
 {
 }
 
-void OpenGLWidget::sendPointToGPU(OGRPoint* point)
+OpenglFeatureDescriptor* OpenGLWidget::sendPointToGPU(OGRPoint* point, float r, float g, float b)
 {
+	return nullptr;
 }
 
-void OpenGLWidget::sendLineStringToGPU(OGRLineString* lineString)
+OpenglFeatureDescriptor* OpenGLWidget::sendMultiPointToGPU(OGRMultiPoint* mutliPoint, float r, float g, float b)
 {
-	int i = 0;
-	int j = lineString->getNumPoints();
-	for (i; i < lineString->getNumPoints(); ++i)
-	{
-		point.push_back(lineString->getX(i));
-		point.push_back(lineString->getY(i));
-	}
+	return nullptr;
 }
 
-void OpenGLWidget::sendPolygonToGPU(OGRPolygon* polygon)
+OpenglFeatureDescriptor* OpenGLWidget::sendLineStringToGPU(OGRLineString* lineString, float r, float g, float b)
 {
-	int i = 0;
-	int j = polygon->getNumInteriorRings();
-	OGRLinearRing* linearRing = polygon->getExteriorRing();
-	for (i; i < linearRing->getNumPoints(); i = i + 2)
-	{
-		point.push_back(linearRing->getX(i));
-		point.push_back(linearRing->getY(i));
-	}
+	return nullptr;
+}
+
+OpenglFeatureDescriptor* OpenGLWidget::sendMultiLineStringToGPU(OGRMultiLineString* multiLineString, float r, float g, float b)
+{
+	return nullptr;
+}
+
+OpenglFeatureDescriptor* OpenGLWidget::sendPolygonToGPU(OGRPolygon* polygon, float r, float g, float b)
+{
+	return nullptr;
+}
+
+OpenglFeatureDescriptor* OpenGLWidget::sendMultiPolygonToGPU(OGRMultiPolygon* multiPolygon, float r, float g, float b)
+{
+	return nullptr;
 }
 
 void OpenGLWidget::initializeGL()
 {
-	glShadeModel(GL_SMOOTH);
-	glClearColor(1.0, 1.0, 1.0, 0.0);
-	glClearDepth(1.0);
-	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LEQUAL);
-	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+    if (glewInit() != GLEW_NO_ERROR)
+    {
+        return;
+    }
+    Env::createShaders();
+    // view matrix
+    glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 1.0f);
+    glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+    glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+    view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 }
-/// <summary>
-/// 使用Qt封装的OpenGL
-/// </summary>
+
+void OpenGLWidget::resizeGL(int w, int h)
+{
+    GLCall(glViewport(0, 0, w, h));
+    GLCall(glMatrixMode(GL_PROJECTION));
+
+    if (!map || map->isEmpty())
+        return;
+    if (h < 1)
+        h = 1;
+
+    // projection matrix
+    float aspectRatio = float(w) / h;
+    GeoExtent mapExtent = map->getExtent();
+    if (mapExtent.aspectRatio() < aspectRatio) {
+        adjustedMapExtent.minX = (mapExtent.minX - mapExtent.centerX()) * aspectRatio / mapExtent.aspectRatio() + mapExtent.centerX();
+        adjustedMapExtent.maxX = (mapExtent.maxX - mapExtent.centerX()) * aspectRatio / mapExtent.aspectRatio() + mapExtent.centerX();
+    }
+    else {
+        adjustedMapExtent.minY = (mapExtent.minY - mapExtent.centerY()) * mapExtent.aspectRatio() / aspectRatio + mapExtent.centerY();
+        adjustedMapExtent.maxY = (mapExtent.maxY - mapExtent.centerY()) * mapExtent.aspectRatio() / aspectRatio + mapExtent.centerY();
+    }
+    proj = glm::ortho(float(adjustedMapExtent.minX), float(adjustedMapExtent.maxX),
+        float(adjustedMapExtent.minY), float(adjustedMapExtent.maxY),
+        -1.0f, 1.0f);
+
+    // MVP
+    setMVP();
+
+    update();
+}
+
 void OpenGLWidget::paintGL()
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glLoadIdentity();
+    Env::renderer.Clear();
 
-	glTranslatef(-1.5, 0.0, -6.0);
+    if (!isRunning || !map || map->isEmpty())
+        return;
 
-	glBegin(GL_COLOR);
-	glColor3f(0.0, 1.0, 0.0);
-	glEnd();
+    map->Draw();//未完成12 28
 
-	glBegin(GL_LINES);
-	double p1 = 0.0;
-	double p2 = 0.0;
-	for (int i = 0; i < point.size(); i = i + 2)
-	{
-		if (i > point.size() - 4)
-			break;
-		p1 = point[i] / 50;
-		p2 = point[i + 1.0] / 50;
-		glVertex3f(p1,p2 , 0.0);
-		p1 = point[i+2.0] / 50;
-		p2 = point[i + 3.0] / 50;
-		glVertex3f(p1, p2, 0.0);
-		//除以50是随便想的，为了让坐标范围缩小到OpenGL可以显示的范围。
-	}
-	glEnd();
-
-	glTranslatef(3.0, 0.0, 0.0);
+    if (isRectSelecting) {
+        GLCall(glUseProgram(0));
+        drawRectNoFill(mouseBeginPos, mouseCurrPos, 1.0f, 0.5f, 0.0f, 5);
+        drawRectFillColor(mouseBeginPos, mouseCurrPos, 1.0f, 0.5f, 0.0f, 0.5f);
+    }
 }
 
-void OpenGLWidget::resizeGL(int width, int height)
+void OpenGLWidget::mousePressEvent(QMouseEvent* ev)
 {
-	if (height == 0)
-	{
-		height = 1;
-	}
-	glViewport(0, 0, (GLint)width, (GLint)height);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(45.0, (GLfloat)width / (GLfloat)height, 0.1, 100.0);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+}
+
+void OpenGLWidget::mouseMoveEvent(QMouseEvent* ev)
+{
+}
+
+void OpenGLWidget::mouseReleaseEvent(QMouseEvent* ev)
+{
+}
+
+void OpenGLWidget::wheelEvent(QWheelEvent* ev)
+{
+}
+
+void OpenGLWidget::enterEvent(QEvent*)
+{
+}
+
+void OpenGLWidget::keyPressEvent(QKeyEvent* ev)
+{
+}
+
+void OpenGLWidget::setMVP()
+{
+}
+
+void OpenGLWidget::drawRectNoFill(const QPoint& startPoint, const QPoint& endPonit, float r, float g, float b, float a)
+{
+}
+
+void OpenGLWidget::drawRectFillColor(const QPoint& startPoint, const QPoint& endPoint, float r, float g, float b, int lineWidth)
+{
 }
