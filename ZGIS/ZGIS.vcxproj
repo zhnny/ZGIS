@@ -52,7 +52,7 @@
       <UseFullPaths>false</UseFullPaths>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>gdal_i.lib;glut32.lib;OpenGL32.lib;$(Qt_LIBS_);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>spdlog.lib;glew32s.lib;gdal_i.lib;glut32.lib;OpenGL32.lib;$(Qt_LIBS_);%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -97,6 +97,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\control\FileReader.cpp" />
+    <ClCompile Include="source\model\GeoMap.cpp" />
+    <ClCompile Include="source\model\utility.cpp" />
+    <ClCompile Include="source\opengl\glcall.cpp" />
+    <ClCompile Include="source\opengl\indexbuffer.cpp" />
+    <ClCompile Include="source\opengl\openglfeaturedescriptor.cpp" />
+    <ClCompile Include="source\opengl\openglrasterdescriptor.cpp" />
+    <ClCompile Include="source\opengl\renderer.cpp" />
+    <ClCompile Include="source\opengl\shader.cpp" />
+    <ClCompile Include="source\opengl\texture.cpp" />
+    <ClCompile Include="source\opengl\vertexarray.cpp" />
+    <ClCompile Include="source\opengl\vertexbuffer.cpp" />
+    <ClCompile Include="source\opengl\vertexbufferlayout.cpp" />
     <ClCompile Include="source\widget\OpenGLWidget.cpp" />
     <ClCompile Include="source\widget\StatusBar.cpp" />
     <ClCompile Include="source\widget\ToolBoxTreeWidget.cpp" />
@@ -113,8 +125,23 @@
     <ClInclude Include="source\geography\map\GeoLayer.h" />
     <ClInclude Include="source\geography\map\GeoMapProperty.h" />
     <ClInclude Include="source\geography\utility\GeoFileRead.h" />
+    <ClInclude Include="source\model\GeoBase.hpp" />
+    <ClInclude Include="source\model\GeoMap.h" />
+    <ClInclude Include="source\model\GeoMapProperty.h" />
+    <ClInclude Include="source\model\utility.h" />
+    <ClInclude Include="source\opengl\glcall.h" />
+    <ClInclude Include="source\opengl\indexbuffer.h" />
+    <ClInclude Include="source\opengl\logger.h" />
+    <ClInclude Include="source\opengl\openglfeaturedescriptor.h" />
+    <ClInclude Include="source\opengl\openglrasterdescriptor.h" />
+    <ClInclude Include="source\opengl\renderer.h" />
+    <ClInclude Include="source\opengl\shader.h" />
+    <ClInclude Include="source\opengl\texture.h" />
+    <ClInclude Include="source\opengl\vertexarray.h" />
+    <ClInclude Include="source\opengl\vertexbuffer.h" />
+    <ClInclude Include="source\opengl\vertexbufferlayout.h" />
     <ClInclude Include="source\widget\LayerTreeWidget.h" />
-    <ClInclude Include="source\widget\OpenGLWidget.h" />
+    <QtMoc Include="source\widget\OpenGLWidget.h" />
     <ClInclude Include="source\widget\StatusBar.h" />
     <ClInclude Include="source\widget\ToolBoxTreeWidget.h" />
   </ItemGroup>

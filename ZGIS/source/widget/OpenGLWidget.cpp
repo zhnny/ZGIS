@@ -63,6 +63,14 @@ void OpenGLWidget::onSendFeatureToGPU(OGRFeature* feature)
 	}
 }
 
+void OpenGLWidget::onZoomToLayer(OGRLayer* layer)
+{
+}
+
+void OpenGLWidget::onZoomToMap()
+{
+}
+
 void OpenGLWidget::sendPointToGPU(OGRPoint* point)
 {
 }
