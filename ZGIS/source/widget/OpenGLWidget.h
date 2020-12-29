@@ -1,17 +1,23 @@
 #pragma once
 #include "GL/glew.h"
 #include <QtWidgets/qopenglwidget.h>
+#include <QMouseEvent>
+#include <QWheelEvent>
+#include <QKeyEvent>
 #include <gdal/ogrsf_frmts.h>
 #include <glm/glm.hpp>
 #include <glm/gtx/string_cast.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <vector>
+#include <array>
+#include <mapbox/earcut.hpp>
 #include "model/GeoMap.h"
 #include "model/GeoBase.hpp"
 #include "whatisthisdialog.h"
 #include "opengl/openglfeaturedescriptor.h"
 #include "opengl/env.h"
 #include "opengl/appevent.h"
+#include "opengl/vertexbufferlayout.h"
 
 
 class OpenGLWidget:public QOpenGLWidget
@@ -66,6 +72,7 @@ private:
 	GeoMap*& map;
 
 	QPoint xy2screen(double geoX, double geoY);
+	GeoRawPoint screen2xy(int screenX, int screenY);
 	GeoRawPoint screen2stdxy(int screenX, int screenY);
 	double getLengthInWorldSystem(int screenLength);
 

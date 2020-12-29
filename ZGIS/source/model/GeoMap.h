@@ -4,6 +4,8 @@
 #include <deque>
 #include <QtCore/qstring.h>
 #include "GeoMapProperty.h"
+#include "opengl/openglfeaturedescriptor.h"
+#include "opengl/env.h"
 
 class GeoMap
 {
@@ -21,7 +23,9 @@ public:
 	~GeoMap();
 	GeoMap* copy();
 	void Draw() const;
-
+	void Draw(OGRLayer* layer)const;
+	void Draw(OGRFeature* feature)const;
+	void Draw(OGRGeometry* geometry)const;
 	/// <summary>
 	/// OGRLayer
 	/// </summary>
@@ -51,6 +55,7 @@ public:
 	GeoExtent getExtent()const { return properties.extent; }
 	void setName(const QString& nameInput) { properties.name = nameInput; }
 	void updateExtent();
+	void setOpenglFeatureDescriptor(OpenglFeatureDescriptor* openglFeatureDesc);
 
 	void queryFeature(double x, double y, double halfEdge, OGRLayer*& layerOut, OGRFeature*& featureOut);
 	void queryFeatures(const GeoExtent& extent, std::map<OGRLayer*, std::vector<OGRFeature*>>& featuresOut);
@@ -64,8 +69,9 @@ public:
 	void offsetSelectedFeatures(double xOffset, double yOffset);
 
 private:
-	int courrentLID = 0;
+	int currentLID = 0;
 	std::vector<OGRLayer*> layers;
 	std::deque<int> layerOrders;
 	GeoMapProperty properties;
+	OpenglFeatureDescriptor* openglFeatureDesc = nullptr;
 };

@@ -1,0 +1,79 @@
+[2020-12-28 18:24:16.847] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-28 18:24:56.839] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-28 18:25:11.012] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-28 18:25:11.012] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-28 18:25:13.250] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-28 18:25:14.270] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-28 18:25:15.188] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-28 18:25:15.188] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-28 18:25:16.106] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-28 18:25:17.024] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-28 18:25:18.350] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-28 18:25:18.351] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-28 18:25:19.015] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-28 18:25:19.832] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-28 18:25:20.596] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-28 18:25:20.596] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-28 18:25:21.260] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-28 18:25:22.178] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-28 18:25:22.943] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-28 18:25:22.943] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-28 18:25:23.556] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-28 18:25:24.118] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-28 18:25:24.731] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-28 18:25:24.731] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-28 18:30:20.398] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-28 18:30:33.554] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-28 18:31:00.804] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-28 18:31:00.804] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-28 18:31:10.258] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-28 18:31:25.127] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-28 18:31:51.218] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-28 18:31:51.218] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-28 18:31:59.328] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-28 18:32:24.227] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-28 18:32:26.742] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-28 18:32:26.742] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-28 18:32:27.617] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-28 18:32:28.984] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-28 18:32:29.750] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-28 18:32:29.750] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-28 18:32:30.570] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-28 18:32:31.335] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-28 18:32:32.046] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-28 18:32:32.046] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-28 18:32:32.703] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-28 18:32:33.304] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-28 18:32:34.070] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-28 18:32:34.070] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-29 00:36:11.095] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-29 00:36:27.518] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-29 00:36:29.909] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-29 00:36:29.909] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-29 00:36:30.675] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-29 00:36:31.339] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-29 00:36:32.054] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-29 00:36:32.054] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-29 00:36:32.821] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-29 00:36:34.704] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-29 00:36:35.469] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-29 00:36:35.469] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-29 00:36:36.032] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-29 00:36:36.290] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-29 00:36:36.497] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-29 00:36:36.497] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-29 00:36:36.703] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-29 00:36:36.858] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-29 00:36:37.064] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-29 00:36:37.065] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-29 00:36:37.270] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-29 00:36:37.425] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-29 00:36:37.682] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-29 00:36:37.682] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-29 01:30:28.577] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-29 01:34:54.872] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-29 01:35:40.694] [basic] [error] [OpenGL Error] (0x0502) int location = glGetUniformLocation(rendererID, name.c_str()) source\opengl\shader.cpp 120
+[2020-12-29 01:36:38.094] [basic] [error] Warning: uniform 'u_MVP' doesn't exist!
+[2020-12-29 01:36:38.095] [basic] [error] [OpenGL Error] (0x0502) glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]) source\opengl\shader.cpp 53
+[2020-12-29 01:37:32.051] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23
+[2020-12-29 01:41:19.823] [basic] [error] [OpenGL Error] (0x0502) glUseProgram(rendererID) source\opengl\shader.cpp 23

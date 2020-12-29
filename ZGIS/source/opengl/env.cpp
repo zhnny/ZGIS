@@ -13,17 +13,17 @@ Renderer renderer;
 
 void createShaders() {
     printf("point");
-    pointShader.create("shaders/point_vert.glsl", "shaders/point_frag.glsl");
+    pointShader.create("source/opengl/shaders/point_vert.glsl", "source/opengl/shaders/point_frag.glsl");
     printf("line");
-    lineShader.create("shaders/line_vert.glsl", "shaders/line_frag.glsl");
+    lineShader.create("source/opengl/shaders/line_vert.glsl", "source/opengl/shaders/line_frag.glsl");
     printf("polygon");
-    polygonShader.create("shaders/polygon_vert.glsl", "shaders/polygon_frag.glsl");
+    polygonShader.create("source/opengl/shaders/polygon_vert.glsl", "source/opengl/shaders/polygon_frag.glsl");
     printf("border");
-    borderShader.create("shaders/border_vert.glsl", "shaders/border_frag.glsl");
+    borderShader.create("source/opengl/shaders/border_vert.glsl", "source/opengl/shaders/border_frag.glsl");
     printf("hightlight");
-    highlightShader.create("shaders/highlight_vert.glsl", "shaders/highlight_frag.glsl");
+    highlightShader.create("source/opengl/shaders/highlight_vert.glsl", "source/opengl/shaders/highlight_frag.glsl");
     printf("texture");
-    textureShader.create("shaders/texture_vert.glsl", "shaders/texture_frag.glsl");
+    textureShader.create("source/opengl/shaders/texture_vert.glsl", "source/opengl/shaders/texture_frag.glsl");
 }
 
 bool isEditing = false;
